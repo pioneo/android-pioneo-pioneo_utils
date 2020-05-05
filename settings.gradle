@@ -1,0 +1,3 @@
+include ':PioUtils'
+include ':app'
+rootProject.name = "PioneoUtility"
