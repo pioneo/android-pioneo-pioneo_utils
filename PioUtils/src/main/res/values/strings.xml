@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PioneoUtility</string>
+    <string name="logout">Logout</string>
+    <string name="logging_you_into_fitbit">Anmelden</string>
+</resources>

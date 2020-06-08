@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import de.pioneo.pioutils.fitbit.authentication.sveinungkb.SecurePreferences;
+import de.pioneo.pioutils.fitbit.authentication.ui.LoginActivity;
 import de.pioneo.pioutils.fitbit.network.BasicHttpRequestBuilder;
 
 /**
@@ -48,49 +49,49 @@ public class AuthenticationManager {
         preferences.put(AUTH_TOKEN_KEY, currentAccessToken == null ? null : currentAccessToken.toBase64String());
     }
 
-//    public static void login(Activity activity) {
-//        Set<Scope> scopes = new HashSet<>();
-//        scopes.addAll(authenticationConfiguration.getRequiredScopes());
-//        scopes.addAll(authenticationConfiguration.getOptionalScopes());
-//
-//        Intent intent = LoginActivity.createIntent(
-//                activity,
-//                authenticationConfiguration.getClientCredentials(),
-//                authenticationConfiguration.getTokenExpiresIn(),
-//                scopes);
-//
-//        activity.startActivityForResult(intent, RESULT_CODE);
-//    }
+    public static void login(Activity activity) {
+        Set<Scope> scopes = new HashSet<>();
+        scopes.addAll(authenticationConfiguration.getRequiredScopes());
+        scopes.addAll(authenticationConfiguration.getOptionalScopes());
 
-//    public static boolean onActivityResult(int requestCode, int resultCode, Intent data, @NonNull AuthenticationHandler authenticationHandler) {
-//        checkPreconditions();
-//        switch (requestCode) {
-//            case (RESULT_CODE): {
-//                if (resultCode == Activity.RESULT_OK) {
-//                    AuthenticationResult authenticationResult = data.getParcelableExtra(LoginActivity.AUTHENTICATION_RESULT_KEY);
-//
-//                    if (authenticationResult.isSuccessful()) {
-//                        Set<Scope> grantedScopes = new HashSet<>(authenticationResult.getAccessToken().getScopes());
-//                        Set<Scope> requiredScopes = new HashSet<>(authenticationConfiguration.getRequiredScopes());
-//
-//                        requiredScopes.removeAll(grantedScopes);
-//                        if (requiredScopes.size() > 0) {
-//                            authenticationResult = AuthenticationResult.missingRequiredScopes(requiredScopes);
-//                        } else {
-//                            setCurrentAccessToken(authenticationResult.getAccessToken());
-//                        }
-//                    }
-//
-//                    authenticationHandler.onAuthFinished(authenticationResult);
-//                } else {
-//                    authenticationHandler.onAuthFinished(AuthenticationResult.dismissed());
-//                }
-//                return true;
-//            }
-//        }
-//
-//        return false;
-//    }
+        Intent intent = LoginActivity.createIntent(
+                activity,
+                authenticationConfiguration.getClientCredentials(),
+                authenticationConfiguration.getTokenExpiresIn(),
+                scopes);
+
+        activity.startActivityForResult(intent, RESULT_CODE);
+    }
+
+    public static boolean onActivityResult(int requestCode, int resultCode, Intent data, @NonNull AuthenticationHandler authenticationHandler) {
+        checkPreconditions();
+        switch (requestCode) {
+            case (RESULT_CODE): {
+                if (resultCode == Activity.RESULT_OK) {
+                    AuthenticationResult authenticationResult = data.getParcelableExtra(LoginActivity.AUTHENTICATION_RESULT_KEY);
+
+                    if (authenticationResult.isSuccessful()) {
+                        Set<Scope> grantedScopes = new HashSet<>(authenticationResult.getAccessToken().getScopes());
+                        Set<Scope> requiredScopes = new HashSet<>(authenticationConfiguration.getRequiredScopes());
+
+                        requiredScopes.removeAll(grantedScopes);
+                        if (requiredScopes.size() > 0) {
+                            authenticationResult = AuthenticationResult.missingRequiredScopes(requiredScopes);
+                        } else {
+                            setCurrentAccessToken(authenticationResult.getAccessToken());
+                        }
+                    }
+
+                    authenticationHandler.onAuthFinished(authenticationResult);
+                } else {
+                    authenticationHandler.onAuthFinished(AuthenticationResult.dismissed());
+                }
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public static boolean isLoggedIn() {
         checkPreconditions();
