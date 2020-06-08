@@ -12,10 +12,11 @@ import android.widget.Toast;
 import java.util.Set;
 
 import de.pioneo.pioutils.PioUtils;
+import de.pioneo.pioutils.fitbit.authentication.AuthenticationHandler;
 import de.pioneo.pioutils.fitbit.authentication.AuthenticationManager;
 import de.pioneo.pioutils.fitbit.authentication.AuthenticationResult;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AuthenticationHandler {
 
 
     @Override
