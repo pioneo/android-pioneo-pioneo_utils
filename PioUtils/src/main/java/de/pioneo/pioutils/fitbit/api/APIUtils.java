@@ -27,6 +27,7 @@ public class APIUtils {
         }
 
         if (accessToken.hasExpired()) {
+
             // Check to see if we should logout
             if (AuthenticationManager.getAuthenticationConfiguration().isLogoutOnAuthFailure()) {
                 AuthenticationManager.logout(contextActivity);

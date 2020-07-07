@@ -47,7 +47,7 @@ public class PioNumberUtils {
         //*****************************************************************************************
         StringBuilder format = new StringBuilder();
         format.append("0.");
-        for (int i = 1; i < digits; i++) {
+        for (int i = 1; i <= digits; i++) {
             format.append("#");
         }
         DecimalFormat decimalFormat = new DecimalFormat(format.toString());

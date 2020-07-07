@@ -1,3 +1,4 @@
+include ':samsunghealth'
 include ':PioUtils'
 include ':app'
 rootProject.name = "PioneoUtility"

@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="lib.pioneo.samsunghealth">
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <meta-data android:name="com.samsung.android.health.permission.read"
+            android:value="com.samsung.health.exercise;com.samsung.health.step_count"/>
+    </application>
+</manifest>

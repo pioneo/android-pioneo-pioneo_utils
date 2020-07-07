@@ -79,6 +79,7 @@ public class AuthenticationManager {
                             authenticationResult = AuthenticationResult.missingRequiredScopes(requiredScopes);
                         } else {
                             setCurrentAccessToken(authenticationResult.getAccessToken());
+
                         }
                     }
 
